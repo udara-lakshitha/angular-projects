@@ -8,7 +8,7 @@ on:
         required: true
         default: 'hello-world'
         type: choice
-        options: ['hello-world', 'main']  # Add all project branches here
+        options: ['hello-world', 'todo-app', 'main']  # Add all project branches here
 
 jobs:
   deploy:
