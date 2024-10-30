@@ -32,7 +32,7 @@ jobs:
         working-directory: ./${{ github.event.inputs.branch }}  # Project-specific directory
 
       - name: Build the Angular application
-        run: ng build --base-href /angular-projects/${{ github.event.inputs.branch }}/
+        run: ng build --base-href /${{ github.event.inputs.branch }}/
         working-directory: ./${{ github.event.inputs.branch }}
 
       - name: Deploy to GitHub Pages
@@ -40,5 +40,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          destination_dir: angular-projects/${{ github.event.inputs.branch }}  # Change to match the URL structure
+          destination_dir: /${{ github.event.inputs.branch }}  # Change to match the URL structure
           publish_dir: ./${{ github.event.inputs.branch }}/dist/${{ github.event.inputs.branch }}/browser
