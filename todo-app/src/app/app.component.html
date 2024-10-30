@@ -1,0 +1,44 @@
+<div class="container">
+	<h1>Todo App</h1>
+	<div class="header">
+		<div class="row">
+			<div class="col-md-8">
+				<mat-form-field class="input-text">
+					<mat-label>Enter new item</mat-label>
+					<input type="text" matInput placeholder="Ex: Coding new project" [(ngModel)]="newItem">
+				</mat-form-field>
+				<button mat-raised-button (click)="addItem()">{{ isUpdate ? 'Update' : 'Add new item' }}</button>
+			</div>
+			<div class="col-md-2">
+				<h4 [matBadge]="completedCount" matBadgeSize="large" matBadgePosition="before">Completed</h4>
+			</div>
+			<div class="col-md-2">
+				<h4 [matBadge]="openCount" matBadgeSize="large" matBadgePosition="before">Open</h4>
+			</div>
+		</div>
+	</div>
+	<mat-divider></mat-divider>
+	<div class="items-list">
+		@for(item of item_list; track index; let index = $index) {
+			<mat-list>
+				<div class="row">
+					<div class="col-md-8">
+						<mat-list-item class="item">{{ index + 1 }} - {{ item.name }}</mat-list-item>
+					</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-success" [disabled]="item.isCompleted" (click)="onCompleted(index)">{{ item.isCompleted ? 'Completed' : 'Mark as completed' }}</button>
+					</div>
+					<div class="col-md-1">
+						<button type="button" [disabled]="item.isCompleted" class="btn btn-warning" (click)="onUpdate(index, item.name)">Update</button>
+					</div>
+					<div class="col-md-1">
+						<button type="button" [disabled]="item.isCompleted" class="btn btn-danger" (click)="onDelete(index)">Delete</button>
+					</div>
+				</div>
+			</mat-list>
+			<mat-divider></mat-divider>
+		} @empty {
+			<p>There are no open tasks to show</p>
+		}
+	</div>
+</div>
